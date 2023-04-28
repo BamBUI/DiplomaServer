@@ -23,7 +23,7 @@ public class Crowd implements Serializable {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "events")
     private Events events;
 
