@@ -24,7 +24,6 @@ create table if not exists events
     maximum int not null ,
     address uuid,
     users uuid,
-    crowd uuid,
     category varchar,
     UNIQUE      (id),
     PRIMARY KEY (id)
@@ -41,7 +40,6 @@ create table if not exists crowd
 
 ALTER TABLE events ADD CONSTRAINT fk_address FOREIGN KEY (address) references address(id);
 ALTER TABLE events ADD CONSTRAINT fk_user FOREIGN KEY (users) references users(id);
-ALTER TABLE events ADD CONSTRAINT fk_crowd FOREIGN KEY (crowd) references crowd(id);
 ALTER TABLE events ADD CONSTRAINT fk_category FOREIGN KEY (category) references category(name);
 
 ALTER TABLE crowd ADD CONSTRAINT fk_users_id FOREIGN KEY (users_id) references users(id);

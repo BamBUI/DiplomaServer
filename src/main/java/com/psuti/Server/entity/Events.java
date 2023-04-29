@@ -38,10 +38,6 @@ public class Events implements Serializable {
     @JoinColumn(name = "users")
     private User users;
 
-    @ManyToOne (targetEntity = Crowd.class)
-    @JoinColumn(name = "crowd")
-    private Crowd crowd;
-
     @ManyToOne (targetEntity = Category.class)
     @JoinColumn(name = "category")
     private Category category;
