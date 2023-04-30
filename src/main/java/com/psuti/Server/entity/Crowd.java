@@ -1,11 +1,13 @@
 package com.psuti.Server.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +29,7 @@ public class Crowd implements Serializable {
     @JoinColumn(name = "events")
     private Events events;
 
-    @OneToMany(targetEntity = User.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private List<User> user;
+    @OneToOne
+    @JoinColumn (name="users")
+    private User users;
 }
