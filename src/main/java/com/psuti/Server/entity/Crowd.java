@@ -3,6 +3,8 @@ package com.psuti.Server.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,10 +21,9 @@ public class Crowd implements Serializable {
 
     public Crowd(){}
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private UUID id;
 
     @OneToOne
@@ -30,6 +31,6 @@ public class Crowd implements Serializable {
     private Events events;
 
     @OneToOne
-    @JoinColumn (name="users")
-    private User users;
+    @JoinColumn (name="teammate")
+    private User teammate;
 }

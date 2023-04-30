@@ -8,4 +8,4 @@ CREATE TABLE if not exists verification_tokens
     CONSTRAINT pk_verification_tokens PRIMARY KEY (id)
 );
 ALTER TABLE verification_tokens
-    ADD CONSTRAINT FK_VERIFICATION_TOKENS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id) on delete cascade;
+    ADD CONSTRAINT FK_VERIFICATION_TOKENS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id) on delete cascade on update cascade;

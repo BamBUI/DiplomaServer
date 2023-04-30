@@ -3,7 +3,8 @@ package com.psuti.Server.controller;
 
 import com.psuti.Server.dao.CrowdRepository;
 import com.psuti.Server.entity.Crowd;
-import com.psuti.Server.entity.User;
+
+import com.psuti.Server.service.DiplomaService.CrowdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,39 +19,36 @@ import java.util.UUID;
 @CrossOrigin(origins = "*", allowCredentials = "false")
 public class CrowdRestController {
 
-    private final CrowdRepository crowdRepository;
+    private final CrowdService crowdService;
 
     @Autowired
-    public CrowdRestController(CrowdRepository crowdRepository) {
-        this.crowdRepository = crowdRepository;
+    public CrowdRestController(CrowdService crowdService) {
+        this.crowdService = crowdService;
     }
         
     @GetMapping
     public List<Crowd> getAll(){
-        return crowdRepository.findAll();
+        return crowdService.getAll();
     }
 
     @GetMapping("/{id}")
     public Crowd getById (@PathVariable("id") UUID id){
-        return crowdRepository.findById(id).get();
+        return crowdService.getById(id);
     }
 
-    @PutMapping
-    public Crowd update (@RequestBody Crowd crowd){
-        if(crowdRepository.existsById (crowd.getId())) {
-            return crowdRepository.save(crowd);
-        }
-        throw new EntityExistsException("Crowd with id:'"+ crowd.getId() +"' doesn't exist");
+    @PutMapping("/{id}")
+    public Crowd update (Crowd crowd, @PathVariable("id") UUID id){
+        return crowdService.update(crowd,id);
     }
 
     @PostMapping
     public Crowd create(@RequestBody Crowd crowd){
-        return crowdRepository.save(crowd);
+        return crowdService.create(crowd);
     }
 
     @DeleteMapping("/{id}")
     public void remove (@PathVariable("id") UUID id){
-        crowdRepository.deleteById(id);
+        crowdService.removeById(id);
     }
 
 }
