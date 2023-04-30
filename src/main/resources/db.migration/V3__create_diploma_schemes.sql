@@ -23,7 +23,7 @@ create table if not exists events
     time time not null ,
     maximum int not null ,
     address uuid,
-    users uuid,
+    creator uuid,
     category varchar,
     UNIQUE      (id),
     PRIMARY KEY (id)
@@ -33,16 +33,16 @@ create table if not exists crowd
 (
     id          uuid         not null,
     events uuid,
-    users_id uuid,
+    teammate uuid,
     UNIQUE      (id),
     PRIMARY KEY (id)
 );
 
 ALTER TABLE events ADD CONSTRAINT fk_address FOREIGN KEY (address) references address(id);
-ALTER TABLE events ADD CONSTRAINT fk_user FOREIGN KEY (users) references users(id);
+ALTER TABLE events ADD CONSTRAINT fk_creator FOREIGN KEY (creator) references users(id);
 ALTER TABLE events ADD CONSTRAINT fk_category FOREIGN KEY (category) references category(name);
 
-ALTER TABLE crowd ADD CONSTRAINT fk_users_id FOREIGN KEY (users_id) references users(id);
+ALTER TABLE crowd ADD CONSTRAINT fk_teammate FOREIGN KEY (teammate) references users(id);
 ALTER TABLE crowd ADD CONSTRAINT fk_events FOREIGN KEY (events) references events(id);
 
 

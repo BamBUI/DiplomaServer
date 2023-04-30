@@ -16,6 +16,9 @@ import java.util.UUID;
 @Table(name = "events")
 public class Events implements Serializable {
 
+    public Events(){
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -35,8 +38,8 @@ public class Events implements Serializable {
     private Address address;
 
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "users")
-    private User users;
+    @JoinColumn(name = "user")
+    private User user;
 
     @ManyToOne (targetEntity = Category.class)
     @JoinColumn(name = "category")

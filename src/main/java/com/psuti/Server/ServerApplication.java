@@ -1,5 +1,6 @@
 package com.psuti.Server;
 
+import com.psuti.Server.entity.Crowd;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

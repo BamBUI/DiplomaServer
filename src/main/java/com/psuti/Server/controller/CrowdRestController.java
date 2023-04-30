@@ -3,14 +3,17 @@ package com.psuti.Server.controller;
 
 import com.psuti.Server.dao.CrowdRepository;
 import com.psuti.Server.entity.Crowd;
+import com.psuti.Server.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.persistence.EntityExistsException;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
-@RequestMapping("/userEvents")
+@RequestMapping("/crowd")
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "false")
 public class CrowdRestController {
@@ -37,7 +40,7 @@ public class CrowdRestController {
         if(crowdRepository.existsById (crowd.getId())) {
             return crowdRepository.save(crowd);
         }
-        throw new EntityExistsException("User Event with id:'"+ crowd.getId() +"' doesn't exist");
+        throw new EntityExistsException("Crowd with id:'"+ crowd.getId() +"' doesn't exist");
     }
 
     @PostMapping
@@ -49,4 +52,5 @@ public class CrowdRestController {
     public void remove (@PathVariable("id") UUID id){
         crowdRepository.deleteById(id);
     }
+
 }

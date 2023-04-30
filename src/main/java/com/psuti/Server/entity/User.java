@@ -16,6 +16,7 @@ import java.util.UUID;
 public class User implements Serializable {
     public User(){
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -32,6 +33,7 @@ public class User implements Serializable {
     @JoinColumn(name = "role")
     private Role role;
 
+
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -40,6 +42,7 @@ public class User implements Serializable {
 
     @JsonIgnore
     private boolean enabled = true;
+
 }
 
 
