@@ -25,6 +25,7 @@ create table if not exists events
     address uuid,
     creator uuid,
     category varchar,
+    FOREIGN KEY (creator) references users(id) on DELETE CASCADE ON UPDATE CASCADE,
     UNIQUE      (id),
     PRIMARY KEY (id)
 );
@@ -35,15 +36,17 @@ create table if not exists crowd
     events uuid,
     teammate uuid,
     UNIQUE      (id),
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (events) references events(id) on DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (teammate) references users(id) on DELETE CASCADE ON UPDATE CASCADE
 );
 
 ALTER TABLE events ADD CONSTRAINT fk_address FOREIGN KEY (address) references address(id);
 ALTER TABLE events ADD CONSTRAINT fk_creator FOREIGN KEY (creator) references users(id);
 ALTER TABLE events ADD CONSTRAINT fk_category FOREIGN KEY (category) references category(name);
 
-ALTER TABLE crowd ADD CONSTRAINT fk_teammate FOREIGN KEY (teammate) references users(id);
-ALTER TABLE crowd ADD CONSTRAINT fk_events FOREIGN KEY (events) references events(id);
+ALTER TABLE crowd ADD CONSTRAINT crowd_fk_teammate FOREIGN KEY (teammate) references users(id);
+ALTER TABLE crowd ADD CONSTRAINT crowd_fk_events FOREIGN KEY (events) references events(id) on delete cascade on update cascade ;
 
 
 INSERT INTO  category (name) VALUES ('Баскетбольная площадка');
