@@ -1,9 +1,8 @@
 package com.psuti.Server.controller;
 
 
-import com.psuti.Server.dao.AddressRepository;
+
 import com.psuti.Server.dao.EventsRepository;
-import com.psuti.Server.entity.Address;
 import com.psuti.Server.entity.Events;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

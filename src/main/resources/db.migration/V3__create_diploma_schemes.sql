@@ -45,8 +45,8 @@ ALTER TABLE events ADD CONSTRAINT fk_address FOREIGN KEY (address) references ad
 ALTER TABLE events ADD CONSTRAINT fk_creator FOREIGN KEY (creator) references users(id);
 ALTER TABLE events ADD CONSTRAINT fk_category FOREIGN KEY (category) references category(name);
 
-ALTER TABLE crowd ADD CONSTRAINT fk_teammate FOREIGN KEY (teammate) references users(id);
-ALTER TABLE crowd ADD CONSTRAINT fk_events FOREIGN KEY (events) references events(id);
+ALTER TABLE crowd ADD CONSTRAINT crowd_fk_teammate FOREIGN KEY (teammate) references users(id);
+ALTER TABLE crowd ADD CONSTRAINT crowd_fk_events FOREIGN KEY (events) references events(id) on delete cascade on update cascade ;
 
 
 INSERT INTO  category (name) VALUES ('Баскетбольная площадка');
