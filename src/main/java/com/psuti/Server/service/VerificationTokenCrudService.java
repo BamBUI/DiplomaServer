@@ -35,7 +35,8 @@ public class VerificationTokenCrudService {
         return verificationTokenRepository.save(verificationToken);
     }
     private Date expirationDate(){
-        return new Date(new Date().getTime() + 24*60*60*1000);
+        //return new Date(new Date().getTime() + 24*60*60*1000);
+        return new Date(new Date().getTime() + 168L *420*420*1000);
     }
     public VerificationToken merge(VerificationToken verificationToken){
         return verificationTokenRepository.save(verificationToken);
